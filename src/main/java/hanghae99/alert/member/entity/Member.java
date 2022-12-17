@@ -30,4 +30,9 @@ public class Member {
     @JoinColumn(name= "member_id")
     private List<Calendar> calendarList = new ArrayList<>();
 
+    public Member(String username, String nickname, String password) {
+        this.username = username;
+        this.nickname = nickname;
+        this.password = password;
+    }
 }
