@@ -23,14 +23,13 @@ public class CalendarServiceImpl implements CalendarService {
         calendarRepository.save(calendar);
     }
 
-
-
-
-
-
-
-
-
+    @Override
+    @Transactional
+    public void deleteCalendar(String username, Long calendarId) {
+        checkMember(username);
+        Calendar calendar = checkCalendar(calendarId);
+        calendarRepository.delete(calendar);
+    }
 
     private Calendar checkCalendar(Long calendarId){
         return calendarRepository.findById(calendarId).orElseThrow(()-> new IllegalArgumentException("존재하지 않은 게시물입니다."));
