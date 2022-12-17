@@ -28,8 +28,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = jwtUtil.resolveToken(request);  // JwtUtil 안에 2. header 토큰을 가져오기
 
         //회원가입, 로그인 시에는 토큰이 없기에 아래처럼 조건문 달아야함
-        if(token != null) {
-            if(!jwtUtil.validateToken(token)){ //JwtUtil 안에 4. 토큰 검증
+        if (token != null) {
+            if (!jwtUtil.validateToken(token)) { //JwtUtil 안에 4. 토큰 검증
                 jwtExceptionHandler(response, "Token Error", HttpStatus.UNAUTHORIZED.value());
                 //토큰에 문제가 있다면 아래 53번 줄에 있는 jwtExceptionHandler() 실행
                 return;
@@ -37,7 +37,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             Claims info = jwtUtil.getUserInfoFromToken(token);  //JwtUtil 안에 5. 토큰에서 사용자 정보 가져오기, getBody()를 통해 사용자 정보 가져옴
             setAuthentication(info.getSubject()); //getSubject()로 ID값 가져와서 검증.. 아래 45번줄 setAuthentication()
         }
-        filterChain.doFilter(request,response);
+        filterChain.doFilter(request, response);
     }
 
     // 인증객체 생성하고 SercurityContextHolder 안에 등록

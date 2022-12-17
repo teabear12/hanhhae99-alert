@@ -8,16 +8,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MemebrDetailsImpl implements UserDetails {
+public class MemebrDetailsImpl implements UserDetails{ //, TeamTwoRequest {
     private final Member member;
     private final String username;
 
-    private final Long memberId;
+    private final String password;
 
     //생성자
-    public MemebrDetailsImpl(Member member, String username) {
+    public MemebrDetailsImpl(Member member, String username, String password) {
         this.member = member;
         this.username = username;
+        this.password = password;
     }
 
     //게터
@@ -43,14 +44,9 @@ public class MemebrDetailsImpl implements UserDetails {
     public String getUsername() {
         return this.username;
     }
-
-    public Long getMember(){
-        return this.member;
-    }
-
     @Override
     public String getPassword() {
-        return  "testpaswwrod";// null;
+        return this.password;
     }
 
     @Override
