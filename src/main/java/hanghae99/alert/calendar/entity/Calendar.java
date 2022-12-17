@@ -24,9 +24,7 @@ public class Calendar {
 
     private String content;
 
-    private LocalDateTime startTime;
-
-    private LocalDateTime endTime;
+    //private LocalDateTime endTime;
 
 
 }
