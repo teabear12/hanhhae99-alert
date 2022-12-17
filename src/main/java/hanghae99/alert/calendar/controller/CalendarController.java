@@ -35,7 +35,7 @@ public class CalendarController {
     public DataResponse<CalendarListInfoResponseDto> getCalendarListInfo(@AuthenticationPrincipal UserDetailsImpl userDetails){
         String username = userDetails.getUsername();
         CalendarListInfoResponseDto response = calendarService.getCalendarListInfo(username);
-        /* ENUM의미가 전체 조회와 안맞음 수정 요구 */
+        /* ENUM 의미가 전체 조회와 안맞음 */
         return new DataResponse<>(READ_PAGING_POSTING_SUCCESS_MSG, response);
     }
 
@@ -44,7 +44,7 @@ public class CalendarController {
     @GetMapping("/{calendarId}")
     public DataResponse<CalendarInfoResponseDto> getCalendarInfo(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable Long calendarId){
         String username = userDetails.getUsername();
-        CalendarInfoResponseDto response = calendarService.getCalendarInfo(calendarId,username);
+        CalendarInfoResponseDto response = calendarService.getCalendarInfo(username,calendarId);
         return new DataResponse<>(READ_CALENDAR_SUCCESS_MSG, response);
     }
 
@@ -52,7 +52,7 @@ public class CalendarController {
     @PatchMapping("/{calendarId}")
     public Response updateCalendar(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody CalendarSaveRequestDto request, @PathVariable Long calendarId ) {
         String username = userDetails.getUsername();
-        calendarService.updateCalendar(request,username,calendarId);
+        calendarService.updateCalendar(request,calendarId,username);
         return new Response(UPDATE_CALENDAR_SUCCESS_MSG);
     }
 
