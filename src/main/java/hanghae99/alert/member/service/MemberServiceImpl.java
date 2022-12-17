@@ -33,6 +33,5 @@ public class MemberServiceImpl implements MemberService {
         if(!member.getPassword().equals(password)){
             throw new IllegalArgumentException("비밀번호가 일치하지 않는다는 메시지.");
         }
-
     }
 }

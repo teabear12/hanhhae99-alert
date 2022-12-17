@@ -1,7 +1,6 @@
 package hanghae99.alert.member.service;
 
 import hanghae99.alert.member.dto.MemberSignupRequestDto;
-
 import javax.servlet.http.HttpServletResponse;
 
 public interface MemberService {
