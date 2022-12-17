@@ -1,5 +1,7 @@
 package hanghae99.alert.calendar.entity;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,14 +9,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 
 @Getter
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access= AccessLevel.PROTECTED)
 public class Calendar {
 
     @Id
@@ -24,9 +25,12 @@ public class Calendar {
 
     private String content;
 
-    private LocalDateTime startTime;
+    private String endTime;
 
-    private LocalDateTime endTime;
-
+    @Builder
+    public Calendar (String content,String endTime){
+        this.content = content;
+        this.endTime = endTime;
+    }
 
 }
