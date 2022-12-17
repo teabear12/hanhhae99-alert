@@ -19,11 +19,10 @@ import static hanghae99.alert.global.response.ResponseMessage.SIGNUP_USER_SUCCES
 public class MemberController {
 
     private final MemberService memberService;
-
+    
     @PostMapping("/signup")
     public Response singup(@RequestBody @Valid MemberSignupRequestDto memberSignupRequestDto) {
         memberService.signup(memberSignupRequestDto);
         return new Response(SIGNUP_USER_SUCCESS_MSG);
     }
-    
 }
