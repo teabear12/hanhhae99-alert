@@ -24,10 +24,13 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
 
-
-
-
-
+    @Override
+    @Transactional
+    public void updateCalendar(CalendarSaveRequestDto request, String username, Long calendarId) {
+        checkMember(username);
+        Calendar calendar = checkCalendar(calendarId);
+        calendar.update(request.getContent(),request.getEndTime());
+    }
 
 
 
