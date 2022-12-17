@@ -1,6 +1,8 @@
 package hanghae99.alert.calendar.service;
 
+import hanghae99.alert.calendar.dto.CalendarSaveRequestDto;
+
 public interface CalendarService {
-    void calendarSave();
+    void createCalendar(CalendarSaveRequestDto calendarSaveRequestDto, String username);
 
 }

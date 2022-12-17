@@ -6,8 +6,6 @@ import hanghae99.alert.member.dto.MemberSignupRequestDto;
 import hanghae99.alert.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +25,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/signup")
-    public Response singup(@RequestBody @Valid MemberSignupRequestDto memberSignupRequestDto, @AuthenticationPrincipal UserDetails userDetails) {
-        System.out.println("여기 오나 : " + userDetails);
-
-
+    public Response singup(@RequestBody @Valid MemberSignupRequestDto memberSignupRequestDto) {
         memberService.signup(memberSignupRequestDto);
         return new Response(SIGNUP_USER_SUCCESS_MSG);
     }
