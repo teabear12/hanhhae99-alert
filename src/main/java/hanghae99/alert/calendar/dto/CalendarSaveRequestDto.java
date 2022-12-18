@@ -10,8 +10,10 @@ public class CalendarSaveRequestDto {
 
     private Long endTime;
 
+    private Long memberId;
+
     /* username이 필요할경우 추가 */
-    public Calendar toEntity(Long startTime){
-        return Calendar.builder().content(content).startTime(startTime).endTime(endTime).build();
+    public Calendar toEntity(Long startTime, Long memberId){
+        return Calendar.builder().content(content).startTime(startTime).endTime(endTime).memberId(memberId).build();
     }
 }

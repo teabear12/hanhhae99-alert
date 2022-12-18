@@ -23,16 +23,20 @@ public class Calendar{
     private Long startTime;
     private Long endTime;
 
+    @Column(name="member_id")
+    private Long memberId;
+
     public void update(String content, Long endTime){
         this.content = content;
         this.endTime = endTime;
     }
 
     @Builder
-    public Calendar (String content,Long startTime,Long endTime){
+    public Calendar (String content,Long startTime,Long endTime, Long memberId){
         this.content = content;
         this.startTime=startTime;
         this.endTime = endTime;
+        this.memberId = memberId;
     }
 
 }

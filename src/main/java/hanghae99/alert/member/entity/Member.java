@@ -20,6 +20,7 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    @Column(unique = true)
     private String username;
 
     private String nickname;
@@ -28,7 +29,7 @@ public class Member {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name= "member_id")
-    private List<Calendar> calendarList = new ArrayList<>();
+    private final List<Calendar> calendarList = new ArrayList<>();
 
     public Member(String username, String password, String nickname) {
         this.username = username;
