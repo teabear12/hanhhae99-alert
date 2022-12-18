@@ -28,6 +28,11 @@ public class Calendar extends Timestamped {
 
     private String endTime;
 
+    public void update(String content, String endTime){
+        this.content = content;
+        this.endTime = endTime;
+    }
+
     @Builder
     public Calendar (String content,String endTime){
         this.content = content;
