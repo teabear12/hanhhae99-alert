@@ -17,6 +17,9 @@ public enum CustomErrorCodeEnum {
 //    FORUM_NOT_PERMISSION(BAD_REQUEST, "게시글 권한이 유효하지 않습니다."),
 //    FORUM_LIKE_ALREADY_EXIST(BAD_REQUEST, "이미 게시글 좋아요를 하였습니다."),
 
+    /* 401 UNAUTHORIZED : 안증되지 않았거나, 유효한 인증정보 부족 */
+    UNAUTHORIZED_TOKEN(UNAUTHORIZED, "인증 정보가 유효하지 않습니다."),
+
     /* 404 NOT_FOUND : Resource 를 찾을 수 없음 */
     MEMBER_NOT_FOUND(NOT_FOUND, "해당 유저 정보를 찾을 수 없습니다"),
 //    FORUM_NOT_FOUND(NOT_FOUND, "해당 게시글 정보를 찾을 수 없습니다"),

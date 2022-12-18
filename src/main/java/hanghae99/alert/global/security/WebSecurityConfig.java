@@ -21,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig {
 
     private final JwtUtil jwtUtil;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -56,7 +57,7 @@ public class WebSecurityConfig {
 
         // JWT Filter를 통과한 이후, 어떤 이유로 인해 토큰 만료 됐을 때 검증(ExceptionTranslationFilter)
         // 401 Error, 인증 실패
-       // http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint);
+        http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint);
         // 403 Error, 권한 오류
        // http.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler);
 

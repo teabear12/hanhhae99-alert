@@ -1,5 +1,6 @@
 package hanghae99.alert.global.security;
 
+import hanghae99.alert.global.security.dto.MemberRoleEnum;
 import hanghae99.alert.member.entity.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

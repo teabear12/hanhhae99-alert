@@ -1,7 +1,9 @@
 package hanghae99.alert.global.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hanghae99.alert.global.security.SecurityExceptionDto;
+import hanghae99.alert.global.exception.CustomErrorCodeEnum;
+import hanghae99.alert.global.exception.CustomException;
+import hanghae99.alert.global.security.dto.SecurityExceptionDto;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,9 +32,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         //회원가입, 로그인 시에는 토큰이 없기에 아래처럼 조건문 달아야함
         if (token != null) {
             if (!jwtUtil.validateToken(token)) { //JwtUtil 안에 4. 토큰 검증
-                jwtExceptionHandler(response, "Token Error", HttpStatus.UNAUTHORIZED.value());
+                throw new CustomException(CustomErrorCodeEnum.UNAUTHORIZED_TOKEN);
+                //jwtExceptionHandler(response, "Token Error", HttpStatus.UNAUTHORIZED.value());
                 //토큰에 문제가 있다면 아래 53번 줄에 있는 jwtExceptionHandler() 실행
-                return;
+                //return;
             }
             Claims info = jwtUtil.getUserInfoFromToken(token);  //JwtUtil 안에 5. 토큰에서 사용자 정보 가져오기, getBody()를 통해 사용자 정보 가져옴
             setAuthentication(info.getSubject()); //getSubject()로 ID값 가져와서 검증.. 아래 45번줄 setAuthentication()

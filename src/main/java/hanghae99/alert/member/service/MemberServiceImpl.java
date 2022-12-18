@@ -2,7 +2,7 @@ package hanghae99.alert.member.service;
 
 import hanghae99.alert.global.exception.CustomErrorCodeEnum;
 import hanghae99.alert.global.exception.CustomException;
-import hanghae99.alert.global.security.MemberRoleEnum;
+import hanghae99.alert.global.security.dto.MemberRoleEnum;
 import hanghae99.alert.global.security.jwt.JwtUtil;
 import hanghae99.alert.member.dto.MemberLoginRequestDto;
 import hanghae99.alert.member.dto.MemberSignupRequestDto;

@@ -1,7 +1,7 @@
 package hanghae99.alert.global.security.jwt;
 
 import hanghae99.alert.global.security.MemberDetailsServiceImpl;
-import hanghae99.alert.global.security.MemberRoleEnum;
+import hanghae99.alert.global.security.dto.MemberRoleEnum;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;

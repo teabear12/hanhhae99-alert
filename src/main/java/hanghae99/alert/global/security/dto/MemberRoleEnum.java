@@ -1,4 +1,4 @@
-package hanghae99.alert.global.security;
+package hanghae99.alert.global.security.dto;
 
 import lombok.Getter;
 
