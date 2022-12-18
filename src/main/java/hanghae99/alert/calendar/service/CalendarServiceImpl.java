@@ -1,5 +1,7 @@
 package hanghae99.alert.calendar.service;
 
+import hanghae99.alert.calendar.dto.CalendarListInfo;
+import hanghae99.alert.calendar.dto.CalendarListInfoResponseDto;
 import hanghae99.alert.calendar.dto.CalendarInfoResponseDto;
 import hanghae99.alert.calendar.dto.CalendarSaveRequestDto;
 import hanghae99.alert.calendar.entity.Calendar;
@@ -36,8 +38,16 @@ public class CalendarServiceImpl implements CalendarService {
     }
     
     /* 일정 전체 조회 */
-
-
+    @Override
+    public CalendarListInfoResponseDto getCalendarListInfo(String username) {
+        CalendarListInfoResponseDto calendarList = new CalendarListInfoResponseDto();
+        /* 정렬 필요할 시 조건 추가 */
+        Member member = checkMember(username);
+        for(Calendar calendar : member.getCalendarList()){
+            calendarList.addCalendar(new CalendarListInfo(calendar));
+        }
+        return calendarList;
+    }
 
     /* 일정 상세 조회 */
     @Override
@@ -56,7 +66,6 @@ public class CalendarServiceImpl implements CalendarService {
         Calendar calendar = checkCalendar(calendarId);
         calendar.update(request.getContent(),request.getEndTime());
     }
-
 
     private Calendar checkCalendar(Long calendarId){
         return calendarRepository.findById(calendarId).orElseThrow(()-> new IllegalArgumentException("존재하지 않은 게시물입니다."));
