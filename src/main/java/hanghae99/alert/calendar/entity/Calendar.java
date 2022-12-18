@@ -1,5 +1,6 @@
 package hanghae99.alert.calendar.entity;
 
+import hanghae99.alert.global.Timestamped;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @Entity
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
-public class Calendar {
+public class Calendar extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
