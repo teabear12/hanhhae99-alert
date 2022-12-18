@@ -26,8 +26,16 @@ public class CalendarServiceImpl implements CalendarService {
         calendarRepository.save(calendar);
     }
 
+    /* 일정 삭제 */
+    @Override
+    @Transactional
+    public void deleteCalendar(String username, Long calendarId) {
+        checkMember(username);
+        Calendar calendar = checkCalendar(calendarId);
+        calendarRepository.delete(calendar);
+    }
+    
     /* 일정 전체 조회 */
-
 
 
 
@@ -41,8 +49,6 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
 
-
-
     @Override
     @Transactional
     public void updateCalendar(CalendarSaveRequestDto request, String username, Long calendarId) {
@@ -50,8 +56,6 @@ public class CalendarServiceImpl implements CalendarService {
         Calendar calendar = checkCalendar(calendarId);
         calendar.update(request.getContent(),request.getEndTime());
     }
-
-
 
 
     private Calendar checkCalendar(Long calendarId){
