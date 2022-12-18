@@ -24,17 +24,8 @@ public class CalendarServiceImpl implements CalendarService {
     @Transactional
     public void createCalendar(CalendarSaveRequestDto calendarSaveRequestDto, String username) {
         checkMember(username);
-        Calendar calendar = calendarSaveRequestDto.toEntity();
+        Calendar calendar = calendarSaveRequestDto.toEntity(System.currentTimeMillis());
         calendarRepository.save(calendar);
-    }
-
-    /* 일정 삭제 */
-    @Override
-    @Transactional
-    public void deleteCalendar(String username, Long calendarId) {
-        checkMember(username);
-        Calendar calendar = checkCalendar(calendarId);
-        calendarRepository.delete(calendar);
     }
     
     /* 일정 전체 조회 */
@@ -58,7 +49,7 @@ public class CalendarServiceImpl implements CalendarService {
         return new CalendarInfoResponseDto(calendar);
     }
 
-
+    /* 일정 수정 */
     @Override
     @Transactional
     public void updateCalendar(CalendarSaveRequestDto request, String username, Long calendarId) {
@@ -67,10 +58,21 @@ public class CalendarServiceImpl implements CalendarService {
         calendar.update(request.getContent(),request.getEndTime());
     }
 
+    /* 일정 삭제 */
+    @Override
+    @Transactional
+    public void deleteCalendar(String username, Long calendarId) {
+        checkMember(username);
+        Calendar calendar = checkCalendar(calendarId);
+        calendarRepository.delete(calendar);
+    }
+
+    /* 일정 확인 */
     private Calendar checkCalendar(Long calendarId){
         return calendarRepository.findById(calendarId).orElseThrow(()-> new IllegalArgumentException("존재하지 않은 게시물입니다."));
     }
 
+    /* 유저 확인 */
     private Member checkMember(String username){
         return memberRepository.findByUsername(username).orElseThrow(()-> new IllegalArgumentException("로그인이 필요합니다."));
     }
