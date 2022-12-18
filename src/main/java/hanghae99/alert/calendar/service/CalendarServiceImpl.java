@@ -24,7 +24,7 @@ public class CalendarServiceImpl implements CalendarService {
     @Transactional
     public void createCalendar(CalendarSaveRequestDto calendarSaveRequestDto, String username) {
         checkMember(username);
-        Calendar calendar = calendarSaveRequestDto.toEntity();
+        Calendar calendar = calendarSaveRequestDto.toEntity(System.currentTimeMillis());
         calendarRepository.save(calendar);
     }
     
