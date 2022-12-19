@@ -20,10 +20,13 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(nullable = false)
     private String nickname;
 
+    @Column(nullable = false)
     private String password;
 
     @OneToMany(fetch = FetchType.LAZY)
