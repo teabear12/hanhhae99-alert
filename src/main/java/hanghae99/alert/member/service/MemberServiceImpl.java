@@ -5,6 +5,7 @@ import hanghae99.alert.global.exception.CustomException;
 import hanghae99.alert.global.security.dto.MemberRoleEnum;
 import hanghae99.alert.global.security.jwt.JwtUtil;
 import hanghae99.alert.member.dto.MemberLoginRequestDto;
+import hanghae99.alert.member.dto.MemberLoginResponseDto;
 import hanghae99.alert.member.dto.MemberSignupRequestDto;
 import hanghae99.alert.member.entity.Member;
 import hanghae99.alert.member.repository.MemberRepository;
@@ -35,7 +36,6 @@ public class MemberServiceImpl implements MemberService {
         String password = memberSignupRequestDto.getPassword();
         String nickname = memberSignupRequestDto.getNickname();
 
-
         //2. ID 중복검사 - username
         //ifPresent()는 Optional 객체가 값을 가지고 있으면 실행 값이 없으면 넘어감
         memberRepository.findByUsername(username).ifPresent(m -> {
@@ -57,24 +57,9 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(member);
     }
 
-    //    @Transactional
-//    @Override
-//    public void login(MemberSignupRequestDto memberSignupRequestDto, HttpServletResponse response) {
-//        String username = memberSignupRequestDto.getUsername();
-//        String password = memberSignupRequestDto.getPassword();
-//
-//        //2. 회원 DB 검사     MemberDetailsServiceImpl loadUserByUsername
-//        Member member = memberRepository.findByUsername(username).orElseThrow(
-//              () -> new CustomException(CustomErrorCodeEnum.MEMBER_NOT_FOUND)
-//        );
-//
-//        if (!member.getPassword().equals(password)) {
-//            throw new IllegalArgumentException("비밀번호가 일치하지 않는다는 메시지.");
-//        }
-//    }
     @Transactional(readOnly = true)
     @Override
-    public void login(MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response) {
+    public MemberLoginResponseDto login(MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response) {
         String username = memberLoginRequestDto.getUsername();
         String password = memberLoginRequestDto.getPassword();
 
@@ -90,6 +75,8 @@ public class MemberServiceImpl implements MemberService {
 
         //3. Token 생성 및 발급
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(username, MemberRoleEnum.MEMBER));
+
+        return new MemberLoginResponseDto(member.getNickname());
 
         //(추가)엑세스 토큰, 리프레시 토큰
     }

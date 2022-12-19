@@ -1,12 +1,8 @@
 package hanghae99.alert.global.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hanghae99.alert.global.exception.CustomErrorCodeEnum;
-import hanghae99.alert.global.exception.CustomException;
 import hanghae99.alert.global.response.Response;
 import hanghae99.alert.global.response.ResponseMessage;
-import hanghae99.alert.global.security.CustomAuthenticationEntryPoint;
-import hanghae99.alert.global.security.dto.SecurityExceptionDto;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
-
-import static hanghae99.alert.global.response.ResponseMessage.SIGNUP_USER_SUCCESS_MSG;
 
 @Slf4j
 @RequiredArgsConstructor
