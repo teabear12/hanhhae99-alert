@@ -8,6 +8,5 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface MemberService {
     void signup(MemberSignupRequestDto memberSignupRequestDto);
-
     MemberLoginResponseDto login(MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response);
 }

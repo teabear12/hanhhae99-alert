@@ -1,6 +1,7 @@
 package hanghae99.alert.member.entity;
 
 import hanghae99.alert.calendar.entity.Calendar;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access= AccessLevel.PROTECTED)
 public class Member {
 
     @Id

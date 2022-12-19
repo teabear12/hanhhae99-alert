@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MemebrDetailsImpl implements UserDetails{ //, TeamTwoRequest {
+public class MemebrDetailsImpl implements UserDetails{
     private final Member member;
     private final String username;
 

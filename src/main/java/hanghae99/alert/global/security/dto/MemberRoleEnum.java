@@ -2,6 +2,7 @@ package hanghae99.alert.global.security.dto;
 
 import lombok.Getter;
 
+/* 아직 쓰지 않음 추후에 사용 예정*/
 @Getter
 public enum MemberRoleEnum {
     MEMBER(Authority.MEMBER),  // 사용자 권한
