@@ -23,8 +23,8 @@ public class CalendarServiceImpl implements CalendarService {
     @Override
     @Transactional
     public void createCalendar(CalendarSaveRequestDto calendarSaveRequestDto, String username) {
-        checkMember(username);
-        Calendar calendar = calendarSaveRequestDto.toEntity(System.currentTimeMillis());
+        Member member = checkMember(username);
+        Calendar calendar = calendarSaveRequestDto.toEntity(System.currentTimeMillis(),member.getId());
         calendarRepository.save(calendar);
     }
     
@@ -32,7 +32,6 @@ public class CalendarServiceImpl implements CalendarService {
     @Override
     public CalendarListInfoResponseDto getCalendarListInfo(String username) {
         CalendarListInfoResponseDto calendarList = new CalendarListInfoResponseDto();
-        /* 정렬 필요할 시 조건 추가 */
         Member member = checkMember(username);
         for(Calendar calendar : member.getCalendarList()){
             calendarList.addCalendar(new CalendarListInfo(calendar));
@@ -76,6 +75,5 @@ public class CalendarServiceImpl implements CalendarService {
     private Member checkMember(String username){
         return memberRepository.findByUsername(username).orElseThrow(()-> new IllegalArgumentException("로그인이 필요합니다."));
     }
-
 
 }
