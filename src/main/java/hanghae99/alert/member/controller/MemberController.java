@@ -1,7 +1,9 @@
 package hanghae99.alert.member.controller;
 
+import hanghae99.alert.global.response.DataResponse;
 import hanghae99.alert.global.response.Response;
 import hanghae99.alert.member.dto.MemberLoginRequestDto;
+import hanghae99.alert.member.dto.MemberLoginResponseDto;
 import hanghae99.alert.member.dto.MemberSignupRequestDto;
 import hanghae99.alert.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -31,9 +33,15 @@ public class MemberController {
         return new Response(SIGNUP_USER_SUCCESS_MSG);
     }
 
+//    @PostMapping("/login")
+//    public Response login(@RequestBody MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response){
+//        memberService.login(memberLoginRequestDto, response);
+//    return new Response(LOGIN_USER_SUCCESS_MSG);
+//    }
+
     @PostMapping("/login")
-    public Response login(@RequestBody MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response){
-        memberService.login(memberLoginRequestDto, response);
-    return new Response(LOGIN_USER_SUCCESS_MSG);
+    public DataResponse<MemberLoginResponseDto> login(@RequestBody MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response){
+        MemberLoginResponseDto nickname = memberService.login(memberLoginRequestDto, response);
+        return new DataResponse<>(LOGIN_USER_SUCCESS_MSG, nickname);
     }
 }
