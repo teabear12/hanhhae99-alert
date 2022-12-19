@@ -1,20 +1,14 @@
 package hanghae99.alert.global.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hanghae99.alert.global.exception.CustomErrorCodeEnum;
-import hanghae99.alert.global.exception.CustomErrorResponse;
-import hanghae99.alert.global.exception.CustomException;
 import hanghae99.alert.global.response.Response;
 import hanghae99.alert.global.response.ResponseMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -43,12 +37,11 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         }
     }
 
-    //    @Override
-//    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-//            throws IOException, ServletException {
-//        response.setContentType("application/json; charset=utf8");
-//        response.getWriter().println("Oh my god!! 당신 토큰이 좀 이상한거 같다?");
-//    }
+   /*
+   * 예외 문자열 발송 예제
+   * response.setContentType("application/json; charset=utf8");
+   * response.getWriter().println("Oh my god!! 당신 토큰이 좀 이상한거 같다?");
+   */
 
 
 }

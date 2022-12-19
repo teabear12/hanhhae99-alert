@@ -19,14 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-
     private final MemberRepository memberRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final JwtUtil jwtUtil;
 
-    private final Validator validator; //비밀번호 형식 검사
 
     @Transactional
     @Override
@@ -42,43 +38,38 @@ public class MemberServiceImpl implements MemberService {
             throw new CustomException(CustomErrorCodeEnum.DUPLICATE_USERNAME);
         });
 
-        //2. 비밀번호 형식 검사
-        if (!validator.isValidPassword(password)) {
-            throw new CustomException(CustomErrorCodeEnum.INVALID_PASSWORD);
-        }
-
         //3. 비밀번호 암호화
         password = passwordEncoder.encode(password);
 
-        //3. Dto -> Entity
+        //4. Dto -> Entity
         Member member = memberSignupRequestDto.toMember(username, password, nickname);
 
-        //4. 회원가입
+        //5. 회원가입
         memberRepository.save(member);
     }
 
     @Transactional(readOnly = true)
     @Override
     public MemberLoginResponseDto login(MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response) {
+        /* 1. 로그인 관련 필드 준비 */
         String username = memberLoginRequestDto.getUsername();
         String password = memberLoginRequestDto.getPassword();
 
-        //1. 회원 존재 여부 확인
+        /* 2. 회원 존재 여부 확인 */
         Member member = memberRepository.findByUsername(username).orElseThrow(
                 () -> new CustomException(CustomErrorCodeEnum.MEMBER_NOT_FOUND)
         );
 
-        //2. 비밀번호 일치 여부 검사
+        //3. 비밀번호 일치 여부 검사
         if (!passwordEncoder.matches(password, member.getPassword())) { // 사용자 입력값 vs DB 저장된 암호
             throw new CustomException(CustomErrorCodeEnum.INCORRECT_PASSWORD);
         }
 
-        //3. Token 생성 및 발급
+        //4. Token 생성 및 발급
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(username, MemberRoleEnum.MEMBER));
 
+        //5. 닉네임 결과 반환
         return new MemberLoginResponseDto(member.getNickname());
 
-        //(추가)엑세스 토큰, 리프레시 토큰
     }
-
 }

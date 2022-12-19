@@ -14,15 +14,16 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
 public class Calendar{
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "calendar_id")
     private Long id;
+    @Column(nullable = false)
     private String content;
+    @Column(nullable = false)
     private Long startTime;
+    @Column(nullable = false)
     private Long endTime;
-
     @Column(name="member_id")
     private Long memberId;
 

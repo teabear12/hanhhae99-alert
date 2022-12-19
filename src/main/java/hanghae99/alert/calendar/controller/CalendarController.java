@@ -17,10 +17,6 @@ import static hanghae99.alert.global.response.ResponseMessage.*;
 @RequiredArgsConstructor
 @RequestMapping("/calendars")
 public class CalendarController {
-
-    /* 일단 username을 받을 예정 필요 없을 시 삭제 */
-
-
     private final CalendarService calendarService;
     /* 일정 등록 */
     @PostMapping
@@ -29,18 +25,13 @@ public class CalendarController {
         calendarService.createCalendar(request,username);
         return new Response(CREATE_CALENDAR_SUCCESS_MSG);
     }
-
-
     /* 일정 전체 조회 */
-    @GetMapping()
+    @GetMapping
     public DataResponse<CalendarListInfoResponseDto> getCalendarListInfo(@AuthenticationPrincipal UserDetails userDetails){
         String username = userDetails.getUsername();
         CalendarListInfoResponseDto response = calendarService.getCalendarListInfo(username);
-        /* ENUM 의미가 전체 조회와 안맞음 */
-        return new DataResponse<>(READ_PAGING_POSTING_SUCCESS_MSG, response);
+        return new DataResponse<>(READ_CALENDAR_LIST_SUCCESS_MSG, response);
     }
-
-
     /* 일정 상세 조회 */
     @GetMapping("/{calendarId}")
     public DataResponse<CalendarInfoResponseDto> getCalendarInfo(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long calendarId){
@@ -48,7 +39,6 @@ public class CalendarController {
         CalendarInfoResponseDto response = calendarService.getCalendarInfo(username,calendarId);
         return new DataResponse<>(READ_CALENDAR_SUCCESS_MSG, response);
     }
-
     /* 일정 수정 */
     @PatchMapping("/{calendarId}")
     public Response updateCalendar(@AuthenticationPrincipal UserDetails userDetails, @RequestBody CalendarSaveRequestDto request, @PathVariable Long calendarId ) {
@@ -56,7 +46,6 @@ public class CalendarController {
         calendarService.updateCalendar(request,username,calendarId);
         return new Response(UPDATE_CALENDAR_SUCCESS_MSG);
     }
-
     /* 일정 삭제 */
     @DeleteMapping("/{calendarId}")
     public Response deleteCalendar(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long calendarId) {

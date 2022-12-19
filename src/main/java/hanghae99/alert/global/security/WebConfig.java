@@ -13,6 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PATCH", "DELETE");
     }
 }
+
 /**
  addMapping : CORS적용할 URL패턴
  allowedOrigins("react서버주소") //접근 허용할 주소
