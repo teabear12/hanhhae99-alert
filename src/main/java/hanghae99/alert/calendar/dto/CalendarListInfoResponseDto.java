@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 public class CalendarListInfoResponseDto {
 
-    List<CalendarListInfo> calendarList = new ArrayList<>();
+    private final List<CalendarListInfo> calendarList = new ArrayList<>();
     /* 리스트에 값 추가 */
     public void addCalendar(CalendarListInfo calendarListInfo){calendarList.add(calendarListInfo);}
 }
