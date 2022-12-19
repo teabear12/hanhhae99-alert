@@ -21,7 +21,7 @@ public class CalendarInfoResponseDto {
 
     /* 초 단위를 날짜 형식으로 바꿈 */
     private String changeMillisToDate(Long millis){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd hh시 mm분");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd hh시 mm분");
         return dateFormat.format(new Date(millis));
     }
 
