@@ -14,4 +14,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("handleCustomException throw CustomException : {}", e.getErrorCode());
         return CustomErrorResponse.toResponseEntity(e.getErrorCode());
     }
+
+//    @ExceptionHandler(value = { CustomTokenException.class})
+//    protected ResponseEntity<CustomErrorResponse> handleCustomException(CustomTokenException e){
+//        log.error("handleCustomException throw CustomTokenException : {}", e.getErrorCode());
+//        return CustomErrorResponse.toResponseEntity(e.getErrorCode());
+//    }
 }

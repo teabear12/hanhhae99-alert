@@ -15,7 +15,13 @@ public enum ResponseMessage {
     // user
     SIGNUP_USER_SUCCESS_MSG(201, "유저 회원가입 성공 "),
     LOGIN_USER_SUCCESS_MSG(201, "유저 로그인 성공 "),
-    USER_DELETE_SUCCESS_MSG(201, "회원 탈퇴 성공 ");
+    USER_DELETE_SUCCESS_MSG(201, "회원 탈퇴 성공 "),
+
+    TOKEN_KEY_MISSING_MSG(401, "HTTP 헤더 키 값 이상행....ㅠ_ㅠ"),
+    TOKEN_VALUE_INVALID_MSG(401, "토큰이 이상한데?? -_-");
+
+
+
 
     private final int status;
     private final String msg;

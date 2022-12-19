@@ -98,7 +98,7 @@ public class JwtUtil {
         } catch (IllegalArgumentException e) {
             log.info("JWT claims is empty, 잘못된 JWT 토큰 입니다.");
         }
-        return false;
+            return false;
     }
 
     //5. 토큰에서 사용자 정보 가져오기, getBody()를 통해 사용자 정보 가져옴
