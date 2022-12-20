@@ -25,7 +25,7 @@ public class Calendar{
     @Column(nullable = false)
     private Long endTime;
     @Column(nullable = false)
-    private Boolean done;
+    private boolean done;
     @Column(name="member_id")
     private Long memberId;
 
@@ -33,7 +33,7 @@ public class Calendar{
         this.content = content;
         this.endTime = endTime;
     }
-    public void updateDone(Boolean done){
+    public void updateDone(boolean done){
         this.done = done;
     }
 
