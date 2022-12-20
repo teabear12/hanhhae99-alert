@@ -9,14 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MemebrDetailsImpl implements UserDetails{
+public class MemberDetailsImpl implements UserDetails{
     private final Member member;
     private final String username;
 
     private final String password;
 
     //생성자
-    public MemebrDetailsImpl(Member member, String username, String password) {
+    public MemberDetailsImpl(Member member, String username, String password) {
         this.member = member;
         this.username = username;
         this.password = password;
