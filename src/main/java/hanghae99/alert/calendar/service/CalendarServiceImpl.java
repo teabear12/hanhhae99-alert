@@ -1,6 +1,5 @@
 package hanghae99.alert.calendar.service;
 
-import hanghae99.alert.calendar.dto.CalendarInfoResponseDto;
 import hanghae99.alert.calendar.dto.CalendarListInfo;
 import hanghae99.alert.calendar.dto.CalendarListInfoResponseDto;
 import hanghae99.alert.calendar.dto.CalendarSaveRequestDto;
@@ -45,15 +44,6 @@ public class CalendarServiceImpl implements CalendarService {
             calendarList.addCalendar(new CalendarListInfo(calendar));
         }
         return calendarList;
-    }
-
-    /* 일정 상세 조회 */
-    @Override
-    @Transactional(readOnly = true)
-    public CalendarInfoResponseDto getCalendarInfo(String username,Long calendarId) {
-        checkMember(username);
-        Calendar calendar = checkCalendar(calendarId);
-        return new CalendarInfoResponseDto(calendar);
     }
 
     /* 일정 수정 */
