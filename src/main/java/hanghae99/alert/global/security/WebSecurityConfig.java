@@ -49,7 +49,9 @@ public class WebSecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/auth/signup").permitAll()
                 .antMatchers("/auth/login").permitAll()
-                .antMatchers("/calendars**").permitAll()
+                /* swagger */
+                .antMatchers("/v2/api-docs", "/swagger*/**").permitAll()
+                .antMatchers("/swagger-resources/configuration/ui").permitAll()
                 .anyRequest().authenticated(); //나머진 토큰 필요
 
         // JWT Filter 등록
