@@ -8,6 +8,8 @@ import hanghae99.alert.member.dto.MemberLoginRequestDto;
 import hanghae99.alert.member.dto.MemberLoginResponseDto;
 import hanghae99.alert.member.dto.MemberSignupRequestDto;
 import hanghae99.alert.member.service.MemberService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,13 +22,13 @@ import javax.validation.Valid;
 
 import static hanghae99.alert.global.response.ResponseMessage.LOGIN_USER_SUCCESS_MSG;
 import static hanghae99.alert.global.response.ResponseMessage.SIGNUP_USER_SUCCESS_MSG;
-
+@Api(tags={"회원 API Controller"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class MemberController {
     private final MemberService memberService;
-
+    @ApiOperation(value="회원가입")
     @PostMapping("/signup")
     public Response singup(@RequestBody @Valid MemberSignupRequestDto memberSignupRequestDto, BindingResult result) {
         if(result.hasErrors()){
@@ -36,6 +38,7 @@ public class MemberController {
         memberService.signup(memberSignupRequestDto);
         return new Response(SIGNUP_USER_SUCCESS_MSG);
     }
+    @ApiOperation(value="로그인")
     @PostMapping("/login")
     public DataResponse<MemberLoginResponseDto> login(@RequestBody MemberLoginRequestDto memberLoginRequestDto, HttpServletResponse response){
         MemberLoginResponseDto nickname = memberService.login(memberLoginRequestDto, response);
