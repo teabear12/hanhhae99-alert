@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -47,9 +48,9 @@ public class WebSecurityConfig {
 
         // .authorizeRequests() : 요청에 대한 권한을 지정
         http.authorizeRequests()
-                .antMatchers("/auth/signup").permitAll()
-                .antMatchers("/auth/login").permitAll()
-                .antMatchers("/calendars**").permitAll()
+                .antMatchers(HttpMethod.OPTIONS,"/auth/*").permitAll() //CORS preflight 예바통신 전용
+                .antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .anyRequest().authenticated(); //나머진 토큰 필요
 
         // JWT Filter 등록
