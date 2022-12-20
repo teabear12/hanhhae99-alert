@@ -1,8 +1,8 @@
 package hanghae99.alert.calendar.service;
 
+import hanghae99.alert.calendar.dto.CalendarInfoResponseDto;
 import hanghae99.alert.calendar.dto.CalendarListInfo;
 import hanghae99.alert.calendar.dto.CalendarListInfoResponseDto;
-import hanghae99.alert.calendar.dto.CalendarInfoResponseDto;
 import hanghae99.alert.calendar.dto.CalendarSaveRequestDto;
 import hanghae99.alert.calendar.entity.Calendar;
 import hanghae99.alert.calendar.repository.CalendarRepository;
@@ -13,6 +13,8 @@ import hanghae99.alert.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,8 +38,9 @@ public class CalendarServiceImpl implements CalendarService {
     public CalendarListInfoResponseDto getCalendarListInfo(String username) {
         CalendarListInfoResponseDto calendarList = new CalendarListInfoResponseDto();
         Member member = checkMember(username);
-        for(Calendar calendar : member.getCalendarList()){
-            /* 마감 시간이 지나지안았을 시 true로 변환 */
+        List<Calendar> calendars = calendarRepository.findByMemberIdOrderByEndTimeAsc(member.getId());
+        for(Calendar calendar : calendars){
+            /* 마감시간이 지나지 않았다면 true로 UPDATE */
             if(isDone(calendar.getEndTime())){calendar.updateDone(true);}
             calendarList.addCalendar(new CalendarListInfo(calendar));
         }
@@ -79,7 +82,7 @@ public class CalendarServiceImpl implements CalendarService {
         return memberRepository.findByUsername(username).orElseThrow(()->new CustomException(CustomErrorCodeEnum.MEMBER_NOT_FOUND));
     }
 
-    /* 등록 시간이 안지났다면 true로 변환 */
+    /* 마감시간과 현재시간 비교 */
     private boolean isDone(Long endTime){
         return (endTime>System.currentTimeMillis());
     }

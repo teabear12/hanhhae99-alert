@@ -26,6 +26,6 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
                 () -> new CustomException(CustomErrorCodeEnum.MEMBER_NOT_FOUND)
         );
 
-        return new MemebrDetailsImpl(member, member.getUsername(), member.getPassword());
+        return new MemberDetailsImpl(member, member.getUsername(), member.getPassword());
     }
 }
