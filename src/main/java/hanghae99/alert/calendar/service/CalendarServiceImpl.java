@@ -37,6 +37,8 @@ public class CalendarServiceImpl implements CalendarService {
         CalendarListInfoResponseDto calendarList = new CalendarListInfoResponseDto();
         Member member = checkMember(username);
         for(Calendar calendar : member.getCalendarList()){
+            /* 마감 시간이 지나지안았을 시 true로 변환 */
+            if(isDone(calendar.getEndTime())){calendar.updateDone(true);}
             calendarList.addCalendar(new CalendarListInfo(calendar));
         }
         return calendarList;
@@ -56,7 +58,7 @@ public class CalendarServiceImpl implements CalendarService {
     public void updateCalendar(CalendarSaveRequestDto request, String username, Long calendarId) {
         checkMember(username);
         Calendar calendar = checkCalendar(calendarId);
-        calendar.update(request.getContent(),request.getEndTime());
+        calendar.updateCalendar(request.getContent(),request.getEndTime());
     }
 
     /* 일정 삭제 */
@@ -77,4 +79,8 @@ public class CalendarServiceImpl implements CalendarService {
         return memberRepository.findByUsername(username).orElseThrow(()->new CustomException(CustomErrorCodeEnum.MEMBER_NOT_FOUND));
     }
 
+    /* 등록 시간이 안지났다면 true로 변환 */
+    private boolean isDone(Long endTime){
+        return (endTime>System.currentTimeMillis());
+    }
 }

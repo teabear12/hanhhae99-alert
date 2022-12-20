@@ -24,12 +24,17 @@ public class Calendar{
     private Long startTime;
     @Column(nullable = false)
     private Long endTime;
+    @Column(nullable = false)
+    private Boolean done;
     @Column(name="member_id")
     private Long memberId;
 
-    public void update(String content, Long endTime){
+    public void updateCalendar(String content, Long endTime){
         this.content = content;
         this.endTime = endTime;
+    }
+    public void updateDone(Boolean done){
+        this.done = done;
     }
 
     @Builder
