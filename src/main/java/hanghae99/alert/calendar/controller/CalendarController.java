@@ -1,6 +1,5 @@
 package hanghae99.alert.calendar.controller;
 
-import hanghae99.alert.calendar.dto.CalendarInfoResponseDto;
 import hanghae99.alert.calendar.dto.CalendarListInfoResponseDto;
 import hanghae99.alert.calendar.dto.CalendarSaveRequestDto;
 import hanghae99.alert.calendar.service.CalendarService;
@@ -31,13 +30,6 @@ public class CalendarController {
         String username = userDetails.getUsername();
         CalendarListInfoResponseDto response = calendarService.getCalendarListInfo(username);
         return new DataResponse<>(READ_CALENDAR_LIST_SUCCESS_MSG, response);
-    }
-    /* 일정 상세 조회 */
-    @GetMapping("/{calendarId}")
-    public DataResponse<CalendarInfoResponseDto> getCalendarInfo(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long calendarId){
-        String username = userDetails.getUsername();
-        CalendarInfoResponseDto response = calendarService.getCalendarInfo(username,calendarId);
-        return new DataResponse<>(READ_CALENDAR_SUCCESS_MSG, response);
     }
     /* 일정 수정 */
     @PatchMapping("/{calendarId}")
