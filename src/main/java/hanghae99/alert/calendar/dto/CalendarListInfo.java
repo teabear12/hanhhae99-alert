@@ -8,10 +8,12 @@ public class CalendarListInfo {
     private Long calendarId;
     private String content;
     private Long endTime;
+    private Boolean done;
 
     public CalendarListInfo(Calendar calendar){
         this.calendarId = calendar.getId();
         this.content = calendar.getContent();
         this.endTime = calendar.getEndTime();
+        this.done = calendar.getDone();
     }
 }
