@@ -27,7 +27,7 @@ public class CalendarListInfo {
     }
 
     private String changeMillisToDate(Long millis){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd hh시 mm분");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd HH시 mm분");
         return dateFormat.format(new Date(millis));
     }
 }
