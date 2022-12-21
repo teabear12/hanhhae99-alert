@@ -1,5 +1,6 @@
-package hanghae99.alert.global.security;
+package hanghae99.alert.global.config;
 
+import hanghae99.alert.global.security.CustomAuthenticationEntryPoint;
 import hanghae99.alert.global.security.jwt.JwtAuthFilter;
 import hanghae99.alert.global.security.jwt.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -48,9 +49,10 @@ public class WebSecurityConfig {
 
         // .authorizeRequests() : 요청에 대한 권한을 지정
         http.authorizeRequests()
-                .antMatchers(HttpMethod.OPTIONS,"/auth/*").permitAll() //CORS preflight 예비통신 전용
-                .antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .antMatchers("/**").permitAll()
+//                .antMatchers(HttpMethod.OPTIONS,"/auth/*").permitAll() //CORS preflight 예비통신 전용
+//                .antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
+//                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 /* swagger */
                 .antMatchers("/v2/api-docs", "/swagger*/**").permitAll()
                 .antMatchers("/swagger-resources/configuration/ui").permitAll()
