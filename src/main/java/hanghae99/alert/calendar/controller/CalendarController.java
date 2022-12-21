@@ -44,6 +44,7 @@ public class CalendarController {
         return new Response(UPDATE_CALENDAR_SUCCESS_MSG);
     }
     @ApiOperation(value="일정 삭제")
+    @DeleteMapping("/{calendarId}")
     public Response deleteCalendar(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long calendarId) {
         String username = userDetails.getUsername();
         calendarService.deleteCalendar(username,calendarId);
