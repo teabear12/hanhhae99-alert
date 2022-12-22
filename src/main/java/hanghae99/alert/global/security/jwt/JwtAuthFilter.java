@@ -44,8 +44,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     objectMapper.writeValue(os, responseDto);
                     os.flush();
                 }
-//                jwtExceptionHandler(response, "Token Error", HttpStatus.UNAUTHORIZED.value());
-                //토큰에 문제가 있다면 아래 53번 줄에 있는 jwtExceptionHandler() 실행
                 return; //이거 없으면 콘솔창에 에러 터진거 막 출력됨
 
             }
@@ -63,16 +61,4 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         SecurityContextHolder.setContext(context);
     }
-
-    // Jwt예외 처리
-//    public void jwtExceptionHandler(HttpServletResponse response, String msg, int statusCode) {
-//        response.setStatus(statusCode);
-//        response.setContentType("application/json");
-//        try {
-//            String json = new ObjectMapper().writeValueAsString(new SecurityExceptionDto(statusCode, msg));
-//            response.getWriter().write(json);
-//        } catch (Exception e) {
-//            log.error(e.getMessage());
-//        }
-//    }
 }
