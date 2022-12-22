@@ -9,8 +9,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry reg) {
         reg.addMapping("/**")
-                .allowedOrigins("https://alert-fe-try.vercel.app/")
-                .allowedOrigins("http://alertservicefe.s3-website.ap-northeast-2.amazonaws.com/")
+                .allowedOrigins("https://alert-fe-try.vercel.app", "http://alertservicefe.s3-website.ap-northeast-2.amazonaws.com")
                 .allowedMethods("GET", "POST", "PATCH", "DELETE")
                 .allowedHeaders("*")
                 .exposedHeaders("Authorization");
@@ -18,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
 }
 /**
  addMapping : CORS적용할 URL패턴 ex) "/api/**"
- allowedOrigins("react서버주소") //접근 허용할 주소 ex) http://192.168.4.215:3000
+ allowedOrigins("react서버주소1", "주소2") //접근 허용할 주소 ex) http://192.168.4.215:3000
  allowedMethods : 요청 허용할 Method 설정
  allowedHeaders
  exposedHeaders : Front response에 표시할 헤더 명시
