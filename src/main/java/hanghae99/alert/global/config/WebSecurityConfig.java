@@ -50,9 +50,10 @@ public class WebSecurityConfig {
         // .authorizeRequests() : 요청에 대한 권한을 지정
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
-//                .antMatchers(HttpMethod.OPTIONS,"/auth/*").permitAll() //CORS preflight 예비통신 전용
-//                .antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
-//                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                .antMatchers(HttpMethod.OPTIONS,"/auth/**").permitAll() //CORS preflight 예비통신 전용
+                .antMatchers(HttpMethod.OPTIONS, "/calendars/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 /* swagger */
                 .antMatchers("/v2/api-docs", "/swagger*/**").permitAll()
                 .antMatchers("/swagger-resources/configuration/ui").permitAll()

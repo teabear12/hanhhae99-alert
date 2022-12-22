@@ -8,6 +8,4 @@ public interface CalendarService {
     CalendarListInfoResponseDto getCalendarListInfo(String username);
     void deleteCalendar(String username, Long calendarId);
     void updateCalendar(CalendarSaveRequestDto calendarSaveRequestDto, String username, Long calendarId);
-
-
 }

@@ -9,7 +9,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry reg) {
         reg.addMapping("/**")
-                .allowedOrigins("*")
+                .allowedOrigins("https://alert-fe-try.vercel.app/")
+                .allowedOrigins("http://alertservicefe.s3-website.ap-northeast-2.amazonaws.com/")
                 .allowedMethods("GET", "POST", "PATCH", "DELETE")
                 .allowedHeaders("*")
                 .exposedHeaders("Authorization");
