@@ -16,7 +16,7 @@ import java.io.OutputStream;
 
 @Component
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint { //토큰 인증 예외처리
-    // 인증과정에서 실패하거나 인증헤더(Authorization)를 보내지 않게되는 경우 401(UnAuthorized) 라는 응답값을 받게되는데요.
+    //인증과정에서 실패하거나 인증헤더(Authorization)를 보내지 않게되는 경우 401(UnAuthorized) 라는 응답값 받음.
     //인증되지 않은 사용자의 리소스에 대한 접근 처리는 AuthenticationEntryPoint가 담당
     //이를 처리해주는 로직이 바로 AuthenticationEntryPoint라는 인터페이스
     //Response에 401이 떨어질만한 에러가 발생할 경우 해당로직을 타게되어, commence라는 메소드를 실행
@@ -42,6 +42,4 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
    * response.setContentType("application/json; charset=utf8");
    * response.getWriter().println("Oh my god!! 당신 토큰이 좀 이상한거 같다?");
    */
-
-
 }
