@@ -11,7 +11,7 @@ import java.util.TimeZone;
 @SpringBootApplication
 public class AlertApplication {
 	@PostConstruct
-	public void setUp() {
+	public void setUp() { //톰캣 시간 설정
 		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
 	}
 	public static void main(String[] args) {
